@@ -12,13 +12,28 @@ import java.util.Random;
 public class Adminhilo extends Thread {
     private char [][]matriz;
     private boolean partida;
+    private String instruccion;
     private Random rd = new Random();
 
     public Adminhilo() {
     }
-    
-    
-    
+
+    public String getInstruccion() {
+        return instruccion;
+    }
+
+    public void setInstruccion(String instruccion) {
+        this.instruccion = instruccion;
+    }
+
+    public Random getRd() {
+        return rd;
+    }
+
+    public void setRd(Random rd) {
+        this.rd = rd;
+    }
+       
     public Adminhilo(char[][] matriz, boolean partida) {
         this.matriz = matriz;
         this.partida = partida;
@@ -56,7 +71,43 @@ public class Adminhilo extends Thread {
             for (int j = 0; j < matriz[0].length; j++) {
                 if (i==x&&j==y) {
                     matriz[i][j]='O';
+                }
+                if (matriz[i][j]=='@') {
+                    matriz[i][j]='X';
+                    matriz[i+1][j]='Q';
+                }
+                while(instruccion.equals("d")){
+                    
+                        try {
+                    Thread.sleep(50);
+                } catch (InterruptedException ex) {
+
                 } 
+                }
+                while(instruccion.equals("u")){
+                    
+                        try {
+                    Thread.sleep(50);
+                } catch (InterruptedException ex) {
+
+                } 
+                }
+                while(instruccion.equals("w")){
+                    
+                        try {
+                    Thread.sleep(50);
+                } catch (InterruptedException ex) {
+
+                } 
+                }
+                while(instruccion.equals("e")){
+                    
+                        try {
+                    Thread.sleep(50);
+                } catch (InterruptedException ex) {
+
+                } 
+                }
             }
         }
     }
