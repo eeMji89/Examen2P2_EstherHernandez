@@ -24,9 +24,8 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        Random rd = new Random();
-        archivo = new File("./Partida");
-        
+        Random rd = new Random();     
+         AdminM am = new AdminM("./Partida");
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[0].length; j++) { 
               matriz[i][j]=' ';  

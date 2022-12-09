@@ -18,7 +18,9 @@ import java.util.ArrayList;
 public class AdminM {
     ArrayList <Matriz> matrices;
     File archivo = null;
-
+    public AdminM(String path){
+        archivo = new File(path);
+    }
     public AdminM(ArrayList<Matriz> matrices) {
         this.matrices = matrices;
     }
