@@ -10,11 +10,11 @@ import java.io.Serializable;
  *
  * @author ELIZABETH HERNANDEZ
  */
-public class adminM implements Serializable{
+public class Matriz implements Serializable{
     char [][]matriz;
     private static final long Serial = 563L;
 
-    public adminM(char[][] matriz) {
+    public Matriz(char[][] matriz) {
         this.matriz = matriz;
     }
 

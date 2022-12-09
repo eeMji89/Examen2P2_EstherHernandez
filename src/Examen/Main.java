@@ -65,52 +65,7 @@ public class Main extends javax.swing.JFrame {
         }
         return mapa;
     }
-    public void guardar(){
-        FileOutputStream fw = null;
-        ObjectOutputStream bw = null;
-        try {
-            fw = new FileOutputStream(archivo);
-            bw = new ObjectOutputStream(fw);
-            for (adminM mat : matrices) {
-               bw.writeObject(mat); 
-            }
-            
-            
-            bw.flush();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }finally{
-            try {
-                bw.close();
-                fw.close();
-            } catch (Exception ex) {
-            }
-        }
-    }
-    public void cargar(){
-        try {
-            adminM m ;
-            char [][]temp; 
-           if (archivo.exists()) {               
-                FileInputStream entrada = new FileInputStream(archivo);
-                ObjectInputStream objeto = new ObjectInputStream(entrada);
-                try {
-                   while ((m = (adminM) objeto.readObject()) != null) {
-                        matrices.add(m);
-                    }
-               } catch (Exception e) {
-               }
-                objeto.close();
-                entrada.close();
-           }
-                
-        } catch (Exception e) {
-                
-                }
-         finally {
-        }
-    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -246,7 +201,7 @@ public class Main extends javax.swing.JFrame {
     }
     char [][]matriz = new char[13][33];
     File archivo = null;
-    ArrayList <adminM> matrices;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
