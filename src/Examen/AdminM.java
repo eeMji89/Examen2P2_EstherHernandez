@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author ELIZABETH HERNANDEZ
  */
 public class AdminM {
-    ArrayList <Matriz> matrices;
+    ArrayList <Matriz> matrices= new ArrayList();
     File archivo = null;
     public AdminM(String path){
         archivo = new File(path);

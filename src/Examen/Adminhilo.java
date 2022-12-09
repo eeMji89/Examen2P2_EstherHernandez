@@ -77,46 +77,37 @@ public class Adminhilo extends Thread {
                 }
             }
         }
-                while (instruccion =='d') {
+        while(partida == true){
+                   
+                if (instruccion =='d') {
                         matriz[x1][y1] = 'X';
                        matriz[x1+1][y1] = '@';
                     
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException ex) {
-
-                    }
                 }
-                while (instruccion=='u') {
+                if (instruccion=='u') {
                     matriz[x1][y1] = 'X';
                     matriz[x1-1][y1] = '@';
                     
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException ex) {
-
-                    }
+                  
                 }
-                while (instruccion=='w') {
+                if (instruccion=='w') {
                     matriz[x1][y1] = 'X';
                     matriz[x1][y1-1] = '@';
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException ex) {
-
-                    }
+                   
                 }
-                while (instruccion=='e') {
+                if (instruccion=='e') {
                     matriz[x1][y1] = 'X';
                     matriz[x1][y1+1] = '@';
-                    try {
+                    
+                }
+                try {
                         Thread.sleep(2000);
                     } catch (InterruptedException ex) {
-
+                        ex.printStackTrace();
                     }
-                }
+                
             
-        
+        }
     }
           
 }

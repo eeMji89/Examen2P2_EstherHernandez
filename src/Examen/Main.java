@@ -25,7 +25,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         Random rd = new Random();     
-         AdminM am = new AdminM("./Partida");
+         
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[0].length; j++) { 
               matriz[i][j]=' ';  
@@ -50,15 +50,13 @@ public class Main extends javax.swing.JFrame {
     public String imprimir(char [][]m){
         String mapa = "";
         for (int i = 0; i < m.length; i++) {
-            for (int j = 0; j < m[0].length; j++) {
+            for (int j = 0; j < m[0].length; j++) {               
                 if (m[i][j]=='*') {
                     mapa+= m[i][j]+" ";
                 }
                 else{
                     mapa+=""+ m[i][j]+" ";
-                }
-                
-               // System.out.print();
+                }           
             }
             mapa+="\n";
         }
@@ -99,6 +97,11 @@ public class Main extends javax.swing.JFrame {
         jButton2.setText("Cargar");
 
         jButton3.setText("Guardar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jt_jugadores.setColumns(20);
         jt_jugadores.setRows(5);
@@ -111,7 +114,7 @@ public class Main extends javax.swing.JFrame {
 
         jt_mapa.setEditable(false);
         jt_mapa.setColumns(20);
-        jt_mapa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jt_mapa.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jt_mapa.setRows(5);
         jt_mapa.setTabSize(5);
         jt_mapa.setWrapStyleWord(true);
@@ -121,40 +124,41 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(73, 73, 73)
-                .addComponent(jButton1)
-                .addGap(69, 69, 69))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(232, 232, 232))
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton3)
+                                .addGap(107, 107, 107)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(235, 235, 235)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -164,11 +168,12 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         //JTextArea jt = new JTextArea(mapa);        
-       
+        
         Thread banana = new Thread(ah);
         banana.start();
         matriz= ah.getMatriz();
         String mapa = imprimir(matriz);
+        
         jt_mapa.setText(mapa);
         //jt_mapa.append(mapa);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -183,6 +188,20 @@ public class Main extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_jt_jugadoresKeyTyped
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        AdminM am = new AdminM("./Partida");
+        am.getMatrices().add(new Matriz(matriz));
+        am.guardar();
+        
+        am.cargar();
+        
+        for (Matriz matr : am.getMatrices()){
+            matr.getMatriz();
+            System.out.println(imprimir(matr.getMatriz()));
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,7 +237,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
-    char [][]matriz = new char[13][33];
+    char [][] matriz = new char[13][33];
     File archivo = null;
     String instr = "";
     Adminhilo ah = new Adminhilo();
