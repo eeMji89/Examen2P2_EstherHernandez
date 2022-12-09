@@ -3,36 +3,38 @@ package Examen;
 
 import java.util.Random;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 
 /**
  *
  * @author ELIZABETH HERNANDEZ
  */
 public class Adminhilo extends Thread {
-    private int [][]matriz;
+    private char [][]matriz;
     private boolean partida;
     private Random rd = new Random();
+
+    public Adminhilo() {
+    }
     
-    public Adminhilo(int[][] matriz, boolean partida) {
+    
+    
+    public Adminhilo(char[][] matriz, boolean partida) {
         this.matriz = matriz;
         this.partida = partida;
     }
 
-    public Adminhilo(int[][] matriz, boolean partida, Runnable target) {
+    public Adminhilo(char[][] matriz, boolean partida, Runnable target) {
         super(target);
         this.matriz = matriz;
         this.partida = partida;
     }
 
-    public int[][] getMatriz() {
+    public char[][] getMatriz() {
         return matriz;
     }
 
-    public void setMatriz(int[][] matriz) {
+    public void setMatriz(char[][] matriz) {
         this.matriz = matriz;
     }
 
@@ -57,13 +59,8 @@ public class Adminhilo extends Thread {
                 if (i==x&&j==y) {
                     matriz[i][j]='O';
                 }
-                if (i==b1&&j==b2) {
-                    matriz[i][j]='@';
-                    if (i==0) {
-                       // matriz[i][j
-                                
-                    }
-                }
+                
+                
             }
         }
     }

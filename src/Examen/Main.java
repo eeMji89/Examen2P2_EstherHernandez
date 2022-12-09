@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,17 +28,24 @@ public class Main extends javax.swing.JFrame {
         archivo = new File("./Partida");
         
         for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[0].length; j++) {   
-                matriz[i][j]=' ';
+            for (int j = 0; j < matriz[0].length; j++) { 
+              matriz[i][j]=' ';  
+               if (i==5&& j ==12) {
+                    matriz[i][j]='@';                    
+                    matriz[i][j-1]='X';
+                    matriz[i][j-2]='X';
+                }                
                 if (i ==0||j==0) {
                     matriz[i][j]= '*';
                 }
                 if (i==matriz.length-1||j==matriz[0].length-1) {
                     matriz[i][j]= '*';
-                }                              
+                } 
+                
             }           
         }
-        
+        Adminhilo ah = new Adminhilo();
+        ah.setMatriz(matriz);
         System.out.println(imprimir(matriz));
     }
     public String imprimir(char [][]m){
@@ -63,7 +71,10 @@ public class Main extends javax.swing.JFrame {
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
-            bw.writeObject(matriz);
+            for (adminM mat : matrices) {
+               bw.writeObject(mat); 
+            }
+            
             
             bw.flush();
         }
@@ -79,14 +90,14 @@ public class Main extends javax.swing.JFrame {
     }
     public void cargar(){
         try {
+            adminM m ;
             char [][]temp; 
-           if (archivo.exists()) {
-               
+           if (archivo.exists()) {               
                 FileInputStream entrada = new FileInputStream(archivo);
                 ObjectInputStream objeto = new ObjectInputStream(entrada);
                 try {
-                   while ((temp = (char[][]) objeto.readObject()) != null) {
-                        matriz=matriz;
+                   while ((m = (adminM) objeto.readObject()) != null) {
+                        matrices.add(m);
                     }
                } catch (Exception e) {
                }
@@ -235,6 +246,7 @@ public class Main extends javax.swing.JFrame {
     }
     char [][]matriz = new char[13][33];
     File archivo = null;
+    ArrayList <adminM> matrices;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
