@@ -43,7 +43,7 @@ public class Main extends javax.swing.JFrame {
                 
             }           
         }
-        Adminhilo ah = new Adminhilo();
+        
         ah.setMatriz(matriz);
         System.out.println(imprimir(matriz));
     }
@@ -102,6 +102,11 @@ public class Main extends javax.swing.JFrame {
 
         jt_jugadores.setColumns(20);
         jt_jugadores.setRows(5);
+        jt_jugadores.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_jugadoresKeyTyped(evt);
+            }
+        });
         jScrollPane2.setViewportView(jt_jugadores);
 
         jt_mapa.setEditable(false);
@@ -158,11 +163,18 @@ public class Main extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String mapa = imprimir(matriz);
-        //JTextArea jt = new JTextArea(mapa);
-        
+        //JTextArea jt = new JTextArea(mapa);        
         jt_mapa.setText(mapa);
+        
         //jt_mapa.append(mapa);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jt_jugadoresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_jugadoresKeyTyped
+        // TODO add your handling code here:
+        String temp = jt_jugadores.getText();
+        char p = temp.charAt(temp.length()-1);
+        ah.setInstruccion(p);
+    }//GEN-LAST:event_jt_jugadoresKeyTyped
 
     /**
      * @param args the command line arguments
@@ -200,7 +212,8 @@ public class Main extends javax.swing.JFrame {
     }
     char [][]matriz = new char[13][33];
     File archivo = null;
-    
+    String instr = "";
+    Adminhilo ah = new Adminhilo();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

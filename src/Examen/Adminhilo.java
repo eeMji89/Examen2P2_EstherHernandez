@@ -12,17 +12,17 @@ import java.util.Random;
 public class Adminhilo extends Thread {
     private char [][]matriz;
     private boolean partida;
-    private String instruccion;
+    private char instruccion;
     private Random rd = new Random();
 
     public Adminhilo() {
     }
 
-    public String getInstruccion() {
+    public char getInstruccion() {
         return instruccion;
     }
 
-    public void setInstruccion(String instruccion) {
+    public void setInstruccion(char instruccion) {
         this.instruccion = instruccion;
     }
 
@@ -61,55 +61,62 @@ public class Adminhilo extends Thread {
         this.partida = partida;
     }
     
-    
-    
     public void run(){        
-        int x = 1+rd.nextInt(matriz.length-1);
-        int y = 1+rd.nextInt(matriz[0].length-1);
-        
+        int x = 1 + rd.nextInt(matriz.length - 1);
+        int y = 1 + rd.nextInt(matriz[0].length - 1);
+        int x1 = 0;
+        int y1=0;
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[0].length; j++) {
-                if (i==x&&j==y) {
-                    matriz[i][j]='O';
+                if (i == x && j == y) {
+                    matriz[i][j] = 'O';
                 }
-                if (matriz[i][j]=='@') {
-                    matriz[i][j]='X';
-                    matriz[i+1][j]='Q';
-                }
-                while(instruccion.equals("d")){
-                    
-                        try {
-                    Thread.sleep(50);
-                } catch (InterruptedException ex) {
-
-                } 
-                }
-                while(instruccion.equals("u")){
-                    
-                        try {
-                    Thread.sleep(50);
-                } catch (InterruptedException ex) {
-
-                } 
-                }
-                while(instruccion.equals("w")){
-                    
-                        try {
-                    Thread.sleep(50);
-                } catch (InterruptedException ex) {
-
-                } 
-                }
-                while(instruccion.equals("e")){
-                    
-                        try {
-                    Thread.sleep(50);
-                } catch (InterruptedException ex) {
-
-                } 
+                if (matriz[i][j] == '@') {
+                    x1=i;
+                    y1=j;
                 }
             }
         }
+                while (instruccion =='d') {
+                        matriz[x1][y1] = 'X';
+                       matriz[x1+1][y1] = '@';
+                    
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException ex) {
+
+                    }
+                }
+                while (instruccion=='u') {
+                    matriz[x1][y1] = 'X';
+                    matriz[x1-1][y1] = '@';
+                    
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException ex) {
+
+                    }
+                }
+                while (instruccion=='w') {
+                    matriz[x1][y1] = 'X';
+                    matriz[x1][y1-1] = '@';
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException ex) {
+
+                    }
+                }
+                while (instruccion=='e') {
+                    matriz[x1][y1] = 'X';
+                    matriz[x1][y1+1] = '@';
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException ex) {
+
+                    }
+                }
+            
+        
     }
           
 }
