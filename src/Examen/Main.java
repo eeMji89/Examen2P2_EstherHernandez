@@ -162,18 +162,26 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String mapa = imprimir(matriz);
-        //JTextArea jt = new JTextArea(mapa);        
-        jt_mapa.setText(mapa);
         
+        //JTextArea jt = new JTextArea(mapa);        
+       
+        Thread banana = new Thread(ah);
+        banana.start();
+        matriz= ah.getMatriz();
+        String mapa = imprimir(matriz);
+        jt_mapa.setText(mapa);
         //jt_mapa.append(mapa);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jt_jugadoresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_jugadoresKeyTyped
         // TODO add your handling code here:
         String temp = jt_jugadores.getText();
-        char p = temp.charAt(temp.length()-1);
+        if (jt_jugadores.getText().length()>1) {
+             char p = temp.charAt(temp.length()-1);
         ah.setInstruccion(p);
+        
+        }
+       
     }//GEN-LAST:event_jt_jugadoresKeyTyped
 
     /**
