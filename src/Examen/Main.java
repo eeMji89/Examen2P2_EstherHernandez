@@ -167,10 +167,12 @@ public class Main extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        //JTextArea jt = new JTextArea(mapa);        
-        
+        //JTextArea jt = new JTextArea(mapa); 
+        partida = true;
+        ah.setPartida(partida);
         Thread banana = new Thread(ah);
         banana.start();
+        
         matriz= ah.getMatriz();
         String mapa = imprimir(matriz);
         
@@ -184,13 +186,24 @@ public class Main extends javax.swing.JFrame {
         if (jt_jugadores.getText().length()>1) {
              char p = temp.charAt(temp.length()-1);
         ah.setInstruccion(p);
+        partida = true;
+        ah.setPartida(partida);
+       /* Thread banana = new Thread(ah);
+        banana.start();
         
+        matriz= ah.getMatriz();
+        String mapa = imprimir(matriz);
+        
+        jt_mapa.setText(mapa);
+        //jt_mapa.append(mapa);*/
         }
        
     }//GEN-LAST:event_jt_jugadoresKeyTyped
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        partida = false;
+        ah.setPartida(partida);
         AdminM am = new AdminM("./Partida");
         am.getMatrices().add(new Matriz(matriz));
         am.guardar();
@@ -241,6 +254,7 @@ public class Main extends javax.swing.JFrame {
     File archivo = null;
     String instr = "";
     Adminhilo ah = new Adminhilo();
+    boolean partida = false;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
