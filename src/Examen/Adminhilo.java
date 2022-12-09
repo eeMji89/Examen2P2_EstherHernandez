@@ -2,6 +2,7 @@ package Examen;
 
 
 import java.util.Random;
+import javax.swing.JTextArea;
 
 
 
@@ -14,6 +15,7 @@ public class Adminhilo extends Thread {
     private boolean partida;
     private char instruccion;
     private Random rd = new Random();
+    private JTextArea jt = new JTextArea();
 
     public Adminhilo() {
     }
@@ -30,6 +32,14 @@ public class Adminhilo extends Thread {
         return rd;
     }
 
+    public JTextArea getJt() {
+        return jt;
+    }
+
+    public void setJt(JTextArea jt) {
+        this.jt = jt;
+    }
+    
     public void setRd(Random rd) {
         this.rd = rd;
     }
@@ -117,7 +127,9 @@ public class Adminhilo extends Thread {
                     matriz[x1][y1+1] = '@';
                     
                 }
-                imprimir(matriz);
+                //System.out.println(imprimir(matriz));
+                //jt.setText(imprimir(matriz));
+                
                 try {
                         Thread.sleep(2000);
                     } catch (InterruptedException ex) {

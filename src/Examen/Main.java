@@ -188,12 +188,12 @@ public class Main extends javax.swing.JFrame {
         ah.setInstruccion(p);
         partida = true;
         ah.setPartida(partida);
-       /* Thread banana = new Thread(ah);
+        Thread banana = new Thread(ah);
         banana.start();
         
-        matriz= ah.getMatriz();
+        /*matriz= ah.getMatriz();
         String mapa = imprimir(matriz);
-        
+        mapa = ah.getJt().getText();
         jt_mapa.setText(mapa);
         //jt_mapa.append(mapa);*/
         }
